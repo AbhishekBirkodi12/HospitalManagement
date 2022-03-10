@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -13,13 +16,12 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int roleId;
+    @NotEmpty(message ="Role name must be passed!!Please check your input")
     private String roleName;
-  /*  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
     private Date createdDate;
-    private Integer createdBy;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
-    private Date modifiedDate;
-    private Integer modifiedBy;
+
+   /* private Date modifiedDate;
+    private Integer modifiedBy;*/
 
     public Date getCreatedDate() {
         return createdDate;
@@ -29,23 +31,23 @@ public class Role {
         this.createdDate = createdDate;
     }
 
-    public Integer getCreatedBy() {
+  /*  public Integer getCreatedBy() {
         return createdBy;
     }
 
     public void setCreatedBy(Integer createdBy) {
         this.createdBy = createdBy;
-    }
+    }*/
 
-    public Date getModifiedDate() {
+  /*  public Date getModifiedDate() {
         return modifiedDate;
     }
 
     public void setModifiedDate(Date modifiedDate) {
         this.modifiedDate = modifiedDate;
-    }
+    }*/
 
-    public Integer getModifiedBy() {
+   /* public Integer getModifiedBy() {
         return modifiedBy;
     }
 

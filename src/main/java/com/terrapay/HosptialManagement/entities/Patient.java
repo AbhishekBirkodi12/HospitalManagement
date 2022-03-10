@@ -1,27 +1,26 @@
 package com.terrapay.HosptialManagement.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
 public class Patient {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int patientId;
-    private String firstName;
-    private String middleName;
-    private String lastName;
-    private String emailAddress;
-    private String phoneNumber;
-    private String gender;
-    private int age;
+
     private String disease;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
+    @JsonBackReference
+    @OneToOne(fetch = FetchType.LAZY, cascade =  CascadeType.ALL)
+    @JoinColumn(name = "userId")
+    private UserMaster userMaster;
     private Date createdDate;
     private Integer createdBy;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
     private Date modifiedDate;
     private Integer modifiedBy;
 
@@ -34,54 +33,6 @@ public class Patient {
         this.patientId = patientId;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public String getDisease() {
         return disease;
     }
@@ -90,11 +41,43 @@ public class Patient {
         this.disease = disease;
     }
 
-    public String getMiddleName() {
-        return middleName;
+    public UserMaster getUserMaster() {
+        return userMaster;
     }
 
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
+    public void setUserMaster(UserMaster userMaster) {
+        this.userMaster = userMaster;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Integer getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Integer createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public Integer getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(Integer modifiedBy) {
+        this.modifiedBy = modifiedBy;
     }
 }

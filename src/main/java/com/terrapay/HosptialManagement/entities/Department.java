@@ -3,6 +3,9 @@ package com.terrapay.HosptialManagement.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -10,15 +13,15 @@ public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int depId;
+    @NotEmpty(message ="Department name must be passed!!Please check your input")
     private String depName;
-  /*  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
-    private Date createdDate;
-    private int createdBy;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
-    private Date modifiedDate;
-    private int modifiedBy;*/
 
-   /* public Date getCreatedDate() {
+    private Date createdDate;
+
+    private Date modifiedDate;
+
+
+    public Date getCreatedDate() {
         return createdDate;
     }
 
@@ -26,13 +29,7 @@ public class Department {
         this.createdDate = createdDate;
     }
 
-    public int getCreatedBy() {
-        return createdBy;
-    }
 
-    public void setCreatedBy(int createdBy) {
-        this.createdBy = createdBy;
-    }
 
     public Date getModifiedDate() {
         return modifiedDate;
@@ -42,20 +39,7 @@ public class Department {
         this.modifiedDate = modifiedDate;
     }
 
-    public int getModifiedBy() {
-        return modifiedBy;
-    }
 
-    public void setModifiedBy(int modifiedBy) {
-        this.modifiedBy = modifiedBy;
-    }*/
-
-
-
-    /*@OneToOne(fetch = FetchType.LAZY,
-            cascade =  CascadeType.ALL,
-            mappedBy = "department")
-    private Doctor doctor;*/
 
     public int getDepId() {
         return depId;

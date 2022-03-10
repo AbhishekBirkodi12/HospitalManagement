@@ -1,9 +1,11 @@
 package com.terrapay.HosptialManagement.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Formatter;
 
@@ -13,22 +15,19 @@ public class Doctor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int doctorId;
 
+    private int departmentId;
+
     private double fees;
     @JsonBackReference
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade =  CascadeType.ALL)
     @JoinColumn(name = "userId")
-    private Registration registration;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
+    private UserMaster userMaster;
     private Date createdDate;
     private Integer createdBy;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
     private Date modifiedDate;
     private Integer modifiedBy;
 
-    /*@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "depId", nullable = false)
-    private Department department;*/
+
 
     public int getDoctorId() {
         return doctorId;
@@ -42,13 +41,7 @@ public class Doctor {
         return fees;
     }
 
-    public Registration getRegistration() {
-        return registration;
-    }
 
-    public void setRegistration(Registration registration) {
-        this.registration = registration;
-    }
 
     public Date getCreatedDate() {
         return createdDate;
@@ -83,9 +76,21 @@ public class Doctor {
     }
 
 
+    public int getDepartmentId() {
+        return departmentId;
+    }
 
+    public void setDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
+    }
 
+    public UserMaster getUserMaster() {
+        return userMaster;
+    }
 
+    public void setUserMaster(UserMaster userMaster) {
+        this.userMaster = userMaster;
+    }
 
     public void setFees(double fees) {
         Formatter formatter = new Formatter();

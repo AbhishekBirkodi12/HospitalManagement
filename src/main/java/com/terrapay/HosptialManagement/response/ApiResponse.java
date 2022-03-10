@@ -4,15 +4,15 @@ import java.util.HashMap;
 
 public class ApiResponse {
 
-    private String status;
+    private Integer status;
     private boolean success;
     HashMap<Object, Object>result=new HashMap<Object, Object>();
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

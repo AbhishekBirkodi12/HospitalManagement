@@ -1,25 +1,68 @@
 package com.terrapay.HosptialManagement.request;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.terrapay.HosptialManagement.entities.Department;
 import com.terrapay.HosptialManagement.entities.Doctor;
+import com.terrapay.HosptialManagement.entities.Patient;
 
+import javax.persistence.Column;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.text.DecimalFormat;
 
 public class RegistrationRequest {
 
-
+    @NotEmpty(message = "first name must be passed!!Please check your input")
     private String firstName;
+
     private String middleName;
+   
+    
+    @NotEmpty(message = "last name must be passed!!Please check your input")
     private String lastName;
-    private String email;
+     
+    @NotEmpty(message = "Email address must be passed!!Please check your input")
+    private String emailAddress;  
+    @NotEmpty(message = "password must be passed!!Please check your input")
     private String password;
-    private Department department;
+    
+
+  
     private double fees;
+    
+    @NotEmpty(message = "phone number must be passed!!Please check your input")
     private String phoneNumber;
+
     private String alternatePhoneNumber;
     private String gender;
+   
+    @JsonProperty
+    private boolean isActive;
+    @Digits(fraction = 0, integer = 10)
     private int roleId;
+ 
     private Doctor doctor;
+    
+    private Patient patient;
+    private int userId;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
 
     public String getAlternatePhoneNumber() {
         return alternatePhoneNumber;
@@ -53,15 +96,17 @@ public class RegistrationRequest {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
-    }
+   
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public String getEmailAddress() {
+		return emailAddress;
+	}
 
-    public String getPassword() {
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+
+	public String getPassword() {
         return password;
     }
 
@@ -69,19 +114,13 @@ public class RegistrationRequest {
         this.password = password;
     }
 
-    public Department getDepartment() {
-        return department;
-    }
 
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
 
-    public Doctor getDoctorInfo() {
+    public Doctor getDoctor() {
         return doctor;
     }
 
-    public void setDoctorInfo(Doctor doctor) {
+    public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
     }
 
@@ -120,4 +159,14 @@ public class RegistrationRequest {
     public void setRoleId(int roleId) {
         this.roleId = roleId;
     }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+
 }
